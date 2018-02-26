@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标的位置</title>
+</head>
+<body>
+	<div id="div1" style="font-size: 60px;height: 9000px;">test</div>
+</body>
+	<script>
+	var EventUtil = {
+		addHandler: function(element, type, handler) {
+			if (element.addEventListener) {
+				element.addEventListener(type, handler, false);  // DOM2
+			} else if (element.attachEvent) {
+				element.attachEvent("on" + type, handler); //IE
+			} else {
+				element["on" + type] = handler;// DOM0
+			}
+		},
+		removeHandler: function(element, type, handler) {
+			if (element.removeEventListener) {
+				element.removeEventListener(type, handler, false);
+			} else if (element.detachEvent) {
+				element.detachEvent("on" + type, handler);
+			} else {
+				element["on" + type] = null;
+			}
+		}
+	};
+	var oDiv = document.getElementById("div1");
+	EventUtil.addHandler(oDiv, "click", function(ev){
+		 var pageY = ev.pageY, //页面位置  ie8以上支持
+		 	 clientY = ev.clientY; //可视位置
+		 	// console.log(ev);
+		 	console.log(pageY);
+		 	console.log(clientY);
+		 	//解决ie不兼容的问题
+		 	 if (pageY === undefined){
+		 	 	pageY = ev.clientHeight + (document.body.scrollLeft ||
+		 		 document.documentElement.scrollLeft);
+		 	 }
+		 	 alert("Page coordinates: " + pageY );
+		 	 // 相对于电脑屏幕
+		 	 // alert("Screen coordinates: " + ev.screenX + "," + ev.screenY);
+	});
+	</script>
+</html> 

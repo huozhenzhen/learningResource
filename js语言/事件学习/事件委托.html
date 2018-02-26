@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件委托</title>
+</head>
+<body>
+	<ul id="myLinks">
+		<li id="goSomewhere">Go somewhere</li>
+		<li id="doSomething">Do something</li>
+		<li id="sayHi">Say hi</li>
+	</ul>
+	<script>
+		var list = document.getElementById("myLinks");
+		list.onclick = function(ev) {
+			switch(ev.target.id) {
+
+				case "goSomewhere" :
+					alert("goSomewhere");
+					break;
+
+				case "doSomething" :
+					alert("doSomething");
+					break;	
+				case "sayHi":
+					alert("sayHi");
+					break;
+			}
+		}
+	</script>
+</body>
+</html>

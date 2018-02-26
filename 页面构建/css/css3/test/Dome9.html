@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	@keyframes warning {
+		20% {
+			/*text-shadow: 2px 0px 4px #000;*/
+			transform: rotate(3deg);
+		}
+		50% {
+			/*text-shadow: 0 0 40px #000;*/
+			transform: rotate(6deg);
+		}
+		80% {
+			/*text-shadow: 2px 0px 4px #000;*/
+			transform: rotate(3deg);
+		}
+		100% {
+			/*text-shadow: 0 0 4px #000;*/
+			transform: rotate(3deg);
+		}
+	}
+
+	div {
+		font-size: 4em;
+		color: #f2050b;
+		text-align: center;
+		/*transform: rotate(-2deg);*/
+	}
+	div:hover{
+		animation: warning 0.2s  2  0.5s ease-in;
+	}
+</style>
+<body>
+	<div>哈哈哈</div>
+</body>
+</html>

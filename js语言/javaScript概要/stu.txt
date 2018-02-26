@@ -1,0 +1,48 @@
+javaScript由以下部分组成：
+	ECMAScript  提供核心的语言功能    ECMAScript3.1成为ECMA-262第五版 2009年发布
+	DOM 提供访问和操作网页内容的方法和接口
+	BOM 提供与浏览器交互的方法和接口
+
+标示符：（关键字好和保留字不要用于属性和标示符 避免不必要的错误）
+	1，第一个字符必须是字母、下划线（—）、美元符号（$）
+	2,其他字符可以是字母、下划线、美元符号、数字。
+	驼峰式的命名是最佳实践
+
+严格模式：
+	"use strict" ECMAScript5引入严格模式 EMCAScript3一些不确定的行为得到处理，对某些不安全 的操作也会抛出错误   以下支持 IE10+、Firefox 4+、Safari 5.1+、Opera 12+和Chrome
+
+语句：
+	语句分号不是必须的，但加上最好。可以增加代码性能  解析器就不必推测哪里该加分号了
+
+变量：
+	ECMAScript的变量是松散类型的，意思是可以保存任何类型的数据。
+
+	这样声明全局变量是不推荐的 
+	function test() {						function test() {	
+		var msg = "hi"; //局部变量				msg = "hi"; //全局变量
+	}                                       }
+	test();  								test();               
+	alert(msg); //msg is not defined        alert(msg);//"hi"
+ECMAScript 5中简单的数据类型（也称基本数据类型） Underfined, Null, Boolean, Number ,String
+
+	parseInt( ) //最好使用第二个基数参数（也就是 2 ，8 ，10 ， 16) 因为有时候存在分歧
+	parseFloat()  //只能解析十进制 
+
+	string 转换的两种方法  val.toString()   //null 和 Underfined   没用这个方法
+	String(val)  val全都支持
+
+	两个字符串比较大小  比较的字符编码  eg: "23"<"3" //true     
+	如果有一个数字会正常  eg 23>"3" //因为会自动转化
+	eg : a > 2 //false  a将自动转化成NAN  NAN与任何值相比其结果都为false
+
+	for in 语句         当出现null或者underfined时会出现错误 //ECMAscript5更正了这个行为
+
+	"标记清楚"是目前主流的垃圾收集算法，这种算法的思想是给不常用的值加上标记。然后在回收其内存。
+
+
+
+
+
+
+		
+

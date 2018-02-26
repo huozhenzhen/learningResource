@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		ul>li:first-child, ul>li:last-child{
+			color: #f00;
+		}
+		ul>li:nth-child(2n) {
+			background: #999;
+		}
+		ul>li:not(.test) a {border: 3px solid #999;}
+
+	</style>
+
+
+</head>
+<body>
+	<h3>这里做一个区别 P::first-letter两个冒号是伪元素 一个冒号则是伪类</h3>
+	<ul>
+		<li class="">123<a href="">4</a>	</li>
+		<li class="test">123</li>
+		<li class="test">123</li>
+		<li class="test"><a href="">4</a> 123</li>
+		<li class="test">123</li>
+		<li class="test">123</li>
+	</ul>
+</body>
+</html>

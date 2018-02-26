@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			font-size: 14px;
+			line-height: 14px;
+		}
+		em{
+			margin-right: 10px;	
+		}
+	</style>
+</head>
+<body>
+	<pre>
+		标签化模板  用法请看打开控制台
+	</pre>
+</body>
+	<script>
+		function passthru(literals, ...substitutions) {
+		let result = "";
+		debugger
+		// 仅使用 substitution 的元素数量来进行循环
+		for (let i = 0; i < substitutions.length; i++) {
+		result += literals[i];
+		result += substitutions[i];
+		}
+		// 添加最后一个字面量
+		result += literals[literals.length - 1];
+		return result;
+		}
+		let count = 10,
+		price = 0.25,
+		message = passthru`${count} items cost $${(count * price).toFixed(2)}.`;
+		console.log(message); // "10 items cost $2.50."
+	</script>
+</html>

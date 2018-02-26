@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+		/*si四个参数分别 ： 右 下  模糊距离 颜色*/
+		h2 {
+			text-shadow: 2px 2px 0 #ccc; /*none 取消*/
+		}
+
+		h3 {
+			text-shadow: 6px 1px #fff,4px 4px 0 #dad7d7;
+		}
+
+
+		/*盒子的阴影  带inset是在盒子内添加的缘故*/
+	/*	body {
+			box-shadow: inset 0px 0px 30px #666;
+		}*/
+		/*多重阴影*/
+		body {
+			box-shadow: inset 0 0 30px hsl(0, 0%, 0%),
+						inset 0 0 70px hsla(0 ,97%, 53%, 0.6);
+		}
+	</style>
+</head>
+<body>
+	<h2>Hello World</h2>
+	<h1>Every Day</h1>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>event.type巧妙使用</title>
+</head>
+<body>
+	<div id="div1" style="width:200px; height:300px; border:1px solid #444;"></div>
+</body>
+<script>
+	var oDiv =document.getElementById("div1");
+
+    var  handler = function(event){
+    	switch(event.type){
+    		case "click" : 
+    			alert("click");
+    			break;
+    		case "mouseover":
+    			event.target.style.backgroundColor = "red";
+    			break;
+    		case "mouseout":
+    			oDiv.style.backgroundColor ="#aaa"
+    	}
+    };
+    oDiv.onclick = handler;
+    oDiv.onmouseover = handler;
+    oDiv.onmouseout = handler;
+</script>
+</html>

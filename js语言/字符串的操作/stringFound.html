@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+     <script>
+     	var text = "cat, bat, sat, fat";
+     	var pat = /.at/g;
+     	var match1 = text.match(pat);  //匹配
+     	var search = text.search(pat);
+        console.log(match1); //["cat", "bat", "sat", "fat"]
+        console.log(search);//0  返回匹配到的索引
+        var result = text.replace(/.at/g ,"xxxxxxx");
+        console.log(result);
+     </script>
+</body>
+</html>

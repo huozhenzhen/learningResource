@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <form  role="form">
+      <div class="form-group">
+        <label for="exampleInputEmail1">邮箱：</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入您的邮箱地址">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">密码</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入您的邮箱密码">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> 记住密码
+        </label>
+      </div>
+      <button type="submit" class="btn btn-default">进入邮箱</button>
+    </form>
+   <h2> 设置成内联</h2>
+    <form class="form-inline" role="form">
+      <div class="form-group">
+        <label class="sr-only" for="exampleInputEmail2">邮箱</label>
+        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="请输入你的邮箱地址">
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="exampleInputPassword2">密码</label>
+        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="请输入你的邮箱密码">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> 记住密码
+        </label>
+      </div>
+      <button type="submit" class="btn btn-default">进入邮箱</button>
+    </form>  
+    
+    <form role="form">
+    <div class="form-group">
+    <input type="email" class="form-control" placeholder="Enter email">
+    </div>
+    </form>
+
+
+<h2>禁用表单</h2>
+    <form role="form">
+      <h3>案例1</h3>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="">
+          记住密码
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="optionsRadios" id="optionsRadios1" value="love" checked>
+          喜欢
+        </label>
+      </div>
+        <div class="radio">
+        <label>
+          <input type="radio" name="optionsRadios" id="optionsRadios2" value="hate">
+          不喜欢
+        </label>
+      </div>
+
+      <h3>示例1</h3>
+      <form role="form" class="form-horizontal">
+        <div class="form-group">
+          <div class="col-xs-6">
+            <input class="form-control input-lg" type="text" placeholder="不是焦点状态下效果">
+          </div>
+          <div class="col-xs-6">
+            <input class="form-control input-lg" id="disabledInput" type="text" placeholder="表单已被禁用，不可输入" disabled>
+          </div>
+        </div> 
+      </form> 
+      <br>
+      <br>
+      <br>
+      <h3>示例2</h3>   
+      <form role="form">
+        <fieldset disabled>
+          <div class="form-group">
+            <label for="disabledTextInput">禁用的输入框</label>
+            <input type="text" id="disabledTextInput" class="form-control"  placeholder="禁止输入" disabled>
+          </div>
+          <div class="form-group">
+            <label for="disabledSelect">禁用的下拉框</label>
+            <select id="disabledSelect" class="form-control">
+              <option>不可选择</option>
+            </select>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> 无法选择
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">提交</button>
+        </fieldset>
+      </form> 
+      <br>
+      <br>
+      <br>
+      <h3>示例3</h3>
+      <form role="form">
+        <fieldset disabled>
+          <legend><input type="text" class="form-control" placeholder="显然我颜色变灰了，但是我没被禁用，不信？单击试一下" /></legend>
+          <div class="form-group">
+            <label for="disabledTextInput">禁用的输入框</label>
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="禁止输入">
+          </div>
+          <div class="form-group">
+            <label for="disabledSelect">禁用的下拉框</label>
+            <select id="disabledSelect" class="form-control">
+              <option>不可选择</option>
+            </select>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> 无法选择
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">提交</button>
+        </fieldset>
+      </form>  
+
+      <h3>示例1</h3>
+      <form role="form" class="form-horizontal">
+        <div class="form-group">
+          <div class="col-xs-6">
+            <input class="form-control input-lg" type="text" placeholder="不是焦点状态下效果">
+          </div>
+          <div class="col-xs-6">
+            <input class="form-control input-lg" id="disabledInput" type="text" placeholder="表单已被禁用，不可输入" disabled>
+          </div>
+        </div> 
+      </form> 
+      <br>
+      <br>
+      <br>
+      <h3>示例2</h3>   
+      <form role="form">
+        <fieldset disabled>
+          <div class="form-group">
+            <label for="disabledTextInput">禁用的输入框</label>
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="禁止输入">
+          </div>
+          <div class="form-group">
+            <label for="disabledSelect">禁用的下拉框</label>
+            <select id="disabledSelect" class="form-control">
+              <option>不可选择</option>
+            </select>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> 无法选择
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">提交</button>
+        </fieldset>
+      </form> 
+      <br>
+      <br>
+      <br>
+      <h3>示例3</h3>
+      <form role="form">
+        <fieldset disabled>
+          <legend><input type="text" class="form-control" placeholder="显然我颜色变灰了，但是我没被禁用，不信？单击试一下" /></legend>
+          <div class="form-group">
+            <label for="disabledTextInput">禁用的输入框</label>
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="禁止输入">
+          </div>
+          <div class="form-group">
+            <label for="disabledSelect">禁用的下拉框</label>
+            <select id="disabledSelect" class="form-control">
+              <option>不可选择</option>
+            </select>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> 无法选择
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">提交</button>
+        </fieldset>
+      </form>  
+    </form> 
+
+
+
+    <h2></h2>    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./js/jquery-3.2.1.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./js/bootstrap.js"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			float: left;
+			height: 300px;
+			width:  300px;
+		}
+		/*线性渐变*/
+		div.test1  {	
+			background: linear-gradient(90deg, #fff 20%, #444 90%, #fff 100%);
+		}
+		/*以某一点的渐变*/
+		.test2 {
+			background: radial-gradient(20px 20px, #fff 80%, #f00 100%)
+		}
+		/*重复渐变*/
+		.test3 {
+			background: repeating-linear-gradient(90deg ,#fff 0px, hsla(200, 50%, 50%, 0.9) 5px);
+		}
+	  
+	</style>
+</head>
+<body>
+	<div class="test1"></div>
+	<div class="test2"></div>
+	<div class="test3"></div>
+	<div class="test4"></div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.layer{
+		width: 800px;
+		height:  800px;
+		background-image:  url("../../img/test.png");
+		//如果在模板中  使用相对路径 应该这样处理
+		// <img src="${require('../../img/test.png')}" alt="">  
+		opacity: 0.3;
+		background-color:  #666;
+		display: flex;
+		>div {
+			font-size: 20px;
+		}
+}	
+

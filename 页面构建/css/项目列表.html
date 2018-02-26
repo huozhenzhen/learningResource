@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+
+		.clearfix:before, .clearfix:after {
+			content:"";
+			display:table;
+		}
+		.clearfix:after{
+			clear:both;
+			overflow:hidden;
+		}
+		.clearfix{
+		    zoom:1;
+		}
+
+		.demo{
+			width:340px;
+			background-color:#D7D7D7;
+			overflow:hidden;
+		}
+		.democase1 ul{
+			padding:20px 0 0 0;
+			/*margin-right:-20px;	*/
+			width: 360px;
+		}
+		.democase1 li{
+			float:left;
+			display:inline;
+			margin:0 20px 20px 0; 
+		}
+		.democase1 li img{
+			vertical-align:middle;
+			width: 100px;
+		}
+
+		
+	</style>
+</head>
+<body>
+	<div id="demo1" class="demo democase1">
+		<ul class="clearfix">
+		   <li><img alt="img1" src="./shuai.png"></li>
+		   <li><img alt="img2" src="./shuai.png"></li>
+		   <li><img alt="img3" src="./shuai.png"></li>
+		   <li><img alt="img4" src="./shuai.png"></li>
+		   <li><img alt="img5" src="./shuai.png"></li>
+		   <li><img alt="img6" src="./shuai.png"></li>   
+		</ul>
+	</div>
+</body>
+</html>

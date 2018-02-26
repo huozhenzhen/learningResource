@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		input
+		{
+			padding: 10px;
+
+		}
+	</style>
+</head>
+<body>
+	<a href="http://blog.csdn.net/forAlienZHOU/article/details/52437929">参考</a>
+	<input type="text" id= "input" value="121">
+	<script>
+
+			var select = function (inputNode, site) {
+
+				if(inputNode.setSelectionRange) {
+					inputNode.setSelectionRange(site, site);
+				} else {
+
+				}
+			}
+
+			document.getElementById('input').addEventListener("click", function(e) {
+
+				var self = this;
+				var val = self.value;
+
+				if(val.indexOf("万元") == -1) {
+					self.value = val + "万元";
+				}
+
+				select(self, self.value.length - 2);
+			});
+
+
+	</script>
+</body>
+
+</html>

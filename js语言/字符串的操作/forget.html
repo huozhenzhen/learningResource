@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var  string =  "Hello World";
+		var str0 = string.concat(" hzz!"); //多数情况用加号
+		var str1 = string.slice(3 , 7);
+		var str2 = string.substring(3, 7);
+		var str3 = string.substr(3,4);  //特殊第二个参数为长度，
+		var str4 = string.indexOf("o"); //indexLastOf();
+		var str5 = string.trim(); //trimLest() and trimRight()
+		var str6 = string.toUpperCase();//toLowerCae() toUpperCase() toLocaleLowerCase() toLocaleUpperCase();
+        
+        var string1 = "cnd"
+        var str7 = string1.localeCompare("bn"); //字母表顺序比较 返回-1  0  1
+        var str8 = String.fromCharCode(104, 101, 108, 108, 111); //字符编码转换为字符
+		var str = [str0, str1, str2, str3, str4, str5, str6, str7, str8]; 
+        for(i=0; i<str.length; i++) {
+        	console.log(str[i]);
+        	// debugger
+        }
+		// console.log(str);
+
+
+
+	</script>
+	  
+</body>
+</html>

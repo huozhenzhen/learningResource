@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<pre style="font-size:18px; font-family: cursive;">
+		BOM(浏览器对象模型) 用于访问浏览器的功能
+	
+窗口关系及框架：
+	访问各个frame有多中方法：数值索引顺序 0开始从左到右由上到下
+	window.frames[0] window.frames["name"]    <b>最好使用 </b>   因为top始终指向最外层的框架  top.frames[0] frames[0] frames["name"]  
+	在每个框架中定义的全局变量自动成为框架中window对象的属性，导致每个框架都有自己的一套构造函数，这个问题会影响到对跨框架传递参数的对象使用instanceof()操作符。
+窗口的位置：(浏览器差异比较大，不怎么好用)
+	var leftPos = (tyorof window.screenLeft == "number") ? window.screenLeft :window.screenX; 
+	var toptPos = (tyorof window.screenTop == "number") ? window.screenTop :window.screenY;
+窗口的大小：
+	var PageWidth = window.innerWidth, PageHeight = window.innerHeight; //ie9及以上
+	其他则使用Dom提供页面可见区域的相关信息
+	if(type pageWidth != "number") {
+		if(document.compatMode == "CSS1Compar") {
+			pageWidth = document.documentElement.clientWidth;
+			pageHeight = document.documentElement.clientHei
+		}	eles {
+			pageWidth = document.body.clientWidth;
+			pageHeight = document.body.clientHeight;
+		}
+	}
+打开窗口： window.open()   打开窗口  而且可以控制更多
+
+location: 
+		document.location和window.location引用的是同一对象
+		location.assign("http:***")   window.location = "http://**"  location.href = "http://"  是一样的
+		location.replace("url");  跳传之后不能回退。
+		location.reload(); 刷新页面     如果传入参数true 页面资源从服务器加载   不传从缓存加载。
+
+
+		
+</pre>
+</body>
+</html>

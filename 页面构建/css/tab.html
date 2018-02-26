@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#tabs2{
+		position:relative;
+		height:142px;
+		overflow:hidden;
+	}
+	#tabs2 .tabs-title{
+		background-color: #F4F4F4;
+	    border: 1px solid #CCCCCC;
+	    padding: 5px 10px;
+		font-size:12px;
+		line-height:1.5;
+		z-index:9;
+		float:left;
+		margin-left:-1px;
+	}
+	#tabs2 .box1{
+		margin-left:0;
+	}
+	#tabs2 .tabs-content{
+		padding:10px 10px 0;
+		border: 1px solid #CCCCCC;
+		height:101px;
+		background-color:#fff;
+		position:absolute;
+		left:0;
+		top:29px;
+		z-index:-2;
+	}
+	#tabs2 :target .tabs-content{
+		z-index:-1;
+	}
+	#tabs2 :target .tabs-title{
+		background-color:#fff;
+		border-bottom:1px solid #fff;
+		color:#f00;
+	}
+	</style>
+</head>
+<body>
+	<section class="demozone">
+	    <div id="tabs2" class="demo">
+	        <div id="box1">
+	            <a href="#box1" class="tabs-title box1">Tab 1</a>
+
+	            <div class="tabs-content"><p>学恶乎始？恶乎终？曰：其数则始乎诵经，终乎读礼；其义则始乎为士，终乎为圣人，
+	                真积力久则入，学至乎没而后止也。故学数有终，若其义则不可须臾舍也。为之，人也；舍
+	                之，禽兽也。故书者，政事之纪也；诗者，中声之所止也；礼者，法之大分，类之纲纪也。故学至乎礼而止矣。夫是之谓道德之极。礼之敬文也，乐之中和也，诗书之博也，春秋之微
+	                也，在天地之间者毕矣。君子之学也，入乎耳，着乎心，布乎四体，形乎动静。端而言，蝡而动，一可以为法则。小人之学也，入乎耳，出乎口；口耳之间，则四寸耳，曷足以美七尺之躯哉！古之学者为己，今之学者为人。君子之学也，以美其身；小人之学也，以为禽犊。故不问而告谓之傲，问一而告二谓之囋。傲、非也，囋、非也；君子如响矣。</p>
+	            </div>
+	        </div>
+	        <div id="box2">
+	            <a href="#box2" class="tabs-title box2">Tab 2</a>
+
+	            <div class="tabs-content"><p>
+	                积土成山，风雨兴焉；积水成渊，蛟龙生焉；积善成德，而神明自得，圣心备焉。故不积跬步，无以至千里；不积小流，无以成江海。骐骥一跃，不能十步；驽马十驾，功在不舍。锲而舍之，朽木不折；锲而不舍，金石可镂。蚓无爪牙之利，筋骨之强，上食埃土，下饮黄泉，用心一也。蟹六跪而二螯，非蛇鳝之穴无可寄托者，用心躁也。</p>
+	            </div>
+	        </div>
+	        <div id="box3">
+	            <a href="#box3" class="tabs-title box3">Tab 3</a>
+
+	            <div class="tabs-content"><p>
+	                吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。</p>
+	            </div>
+	        </div>
+	    </div>
+	</section>
+</body>
+</html>

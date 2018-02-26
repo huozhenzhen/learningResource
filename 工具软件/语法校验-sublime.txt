@@ -1,0 +1,3 @@
+sublime : sublimelinter
+	sublime jshint
+npm: install -g jshint 	

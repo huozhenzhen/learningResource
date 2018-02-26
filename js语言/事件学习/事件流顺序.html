@@ -1,0 +1,22 @@
+n<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件流顺序</title>
+</head>
+<body>
+	<div id="div1" >click  me</div>
+</body>
+	<script>
+		var oDiv = document.getElementById("div1");
+		oDiv.onclick = function(event){
+			alert(event.eventPhase+"        c"); //2处于目标阶段
+		};
+		document.body.addEventListener("click", function(event){
+			alert(event.eventPhase+"        a"); //1捕获
+		}, true);
+		document.body.addEventListener("click", function(event){
+			alert(event.eventPhase+"        b"); //3冒泡
+		}, false);
+	</script>
+</html>

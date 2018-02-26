@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.red {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div style = "width:500px; height:5000px; border: 1px solid red">
+		<div id="div1" style = "width:100px; height:100px; padding:20px;border:1px #444 solid; margin:20px;"></div>
+	</div>
+	<script>
+		var div1 = document.getElementById('div1');
+		// console.log(div1.clientHeight);
+		window.onscroll = function() {console.log(div1.scrollHeight)}; 
+	</script>
+</body>
+</html>

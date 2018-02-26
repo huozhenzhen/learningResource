@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>regexp学习</title>
+</head>
+<body>
+<pre>
+	正则初始化的两种形式：
+	1 字面量 var = /\bis\b/g   匹配到全部的is  (\b表示字母边界)
+	2 构造函数 var = new RegExp('\\bis\\b', 'g')   js中反斜杠需要转意
+
+	修饰符 ： global(g) 全文搜索    ignoreCase (i) 不区分大小写  multiple lines(m) 多行搜索
+
+	元字符 ： []   /[abc]/g abc其中一个(one of)   /[^abc]/g 非abc(None of) 
+
+	范围类： [a-z] a到c    [a-zA-Z]所有字母  
+
+	预定义类：  .   等价类  [^\r\n]  除了回车符和换行符之外的所有字符
+				digit
+				\d  等价类  [0-9]  	 数字字符
+				\D  等价类	[^0-9]   非数字字符
+				space
+				\s  等价类 	[\t\n\x0B\f\r] 空白符
+				\S	等价类 	[^\t\n\x0B\f\r]  非空白符
+				word
+				\w 	等价类 	[a-zA-Z_0-9]   	字母  单词 下划线
+				\W	等价类	[^a-zA-Z_0-9]  以上去非
+				eg: ab+数字+任意字符   /ab[0-9][^\r\n]/  /aa\d./
+
+
+	边界: 	^  以***为开始   eg: "@123@23@".replace(/^@./,"P");
+			$  以***为结束
+			\b 单词边界		
+			\B	非单词边界
+	量词： ？   出现零次或者一次(最多出现一次)
+		   +    出现一次或者多次(最少出现一次)
+		   *	出现零次(任意次)
+		   {n}  出现n次
+		   {n,m} 出现n->m次
+		   {n,}  至少出现n次
+
+	贪婪模式  eg:  '12345678'.replace(/\d{3,6}/g,"Q")  //会匹配到尽可能多次
+	非贪婪模式  eg: '12345678'.replace(/\d{3,6}?/g,"Q")  //会匹配到第一次
+
+	分组： 'ByronsperByrcasper'.replace(/Byr(on|ca)sper/g, 'X')  //分组在或者的使用
+			分组的反向引用 2019-12-25 => 12/25/2019
+			"2019-12-25".replace(/(\d{4})-(\d{2})-(\d{2})/g, '$2/$3/$1');
+	前瞻： 正向前瞻 exp(?=assert)   eg:"a2aa".replace(/a(?=\d)/g,"A")  //"A2aa"
+		   负向前瞻 exp(?!assert)	eg:"a2aa".replace(/a(?!\d)/g,"A") //a2AA
+
+
+	方法： test()    在带修饰符g的情况下，lastIndex会起作用  eg: var res = /\d/g   res.test(1); lastIndex = 0时会匹配不到。
+
+</pre>
+	
+</body>
+<script>
+/*//正则常用方法
+	var res = /\d(\w)(\w)\d/;
+	var res1 = /\d(\w)(\w)\d/g;
+	var str = "Q2ee3j1dh8fj";
+
+	var ret = res.exec(str);
+	console.log(ret)
+	console.log(ret.toString()+"\n"+ret.index); //"2ee3,e,e"  + 1  e,e是分组内容
+
+	while(ret = res1.exec(str)) {
+		console.log(res1.lastIndex+ "\n" +ret.index + "\n" +ret.toString()); 
+	}*/
+</script>
+<script>
+//字符串正则
+
+	// string.search(reg)//    /res/g中全局g无效	 一般  string.search("1") 参数会自动转成正则
+	var res = /\d(\w)(\w)\d/;
+	var res1 = /\d(\w)(\w)\d/g;
+	var str = "Q2ee3j1dh8fj";
+
+	var ret = str.match(res);  //与exec相似 
+	console.log(ret.toString()+"\n"+ret.index); //"2ee3,e,e"  + 1  e,e是分组内容
+
+	var ret = str.match(res1);
+	console.log(ret); //["2ee3", "1dh8"]  
+	// console.log(res1.lastIndex+ "\n" +ret.index + "\n" +ret.toString()); 
+
+	console.log(str.split(/\d/g)); //平时str.split(",") 这个参数其实是自动转成正则
+
+	str.replace(res, str);
+	str.replace(res, res);
+
+	// str.replace(res, function);
+	//parmas: 
+	var resFun = "a1b22c3".replace(/(\d)(\w)(\d)/g,function(match, group1, group2,group3, index ,orgin){
+		console.log(match);
+		console.log(group1);
+		console.log(group2);
+		console.log(group3);
+		return parseInt(match) + 99;
+	});
+	console.log(resFun);
+</script>				
+</html>

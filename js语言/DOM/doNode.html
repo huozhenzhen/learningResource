@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul id="test">
+		<li>11</li>
+		<li>22</li>
+		<li>33</li>
+	</ul>
+	<div id="son">444</div>
+</body>
+<script>
+	var oUl = document.getElementById("test");
+	var oSon = document.getElementById("son");
+	//appendChild(newNode)
+	var appendChild = oUl.appendChild(oSon);//加到子元素的最后，oSon节点已经是文档一部分。结果是从原来的位置转移到新的位置(换位置）。
+	console.log(appendChild); //appendChild（）返回结果是 oSon节点
+
+    // insertBefore(newNode, 参考点);
+    oUl.insertBefore(oSon, oUl.firstChild); 
+
+    //repalceChild(newNode, 参考点)；
+
+    //removeChild(参考点)
+
+   /* cloneNode(Booleans); 
+       true的时候是深复制
+       false的时候为浅复制
+       其实就是是否复制子节点的差异*/
+</script>
+</html>

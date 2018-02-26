@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#demo1 {
+			background: #666;
+			/*display:inline-block;*display:inline;*zoom:1;  */
+			/*inline-block也可以清理浮动*/
+		}
+		#demo1  li{
+			float: left;
+		}
+			/* 第一  或者overflow:hidden;*/
+	/* 	.clearfix{
+		overflow:auto;*zoom:1;
+	}
+	 */
+		
+		
+		/*.clearfix:before, .clearfix:after {
+			content:"";
+			display:table;
+		}
+		.clearfix:after{
+			clear:both;
+			overflow:hidden;
+		}
+		.clearfix{
+		    zoom:1;
+		}*/
+
+
+
+		/* .clearfix:after {
+		    visibility: hidden;
+		    display: block;
+		    font-size: 0;
+		    content: " ";
+		    clear: both;
+		    height: 0;
+		}
+		* html .clearfix             { zoom: 1; } IE6
+		*:first-child+html .clearfix { zoom: 1; } IE7 */
+
+
+
+</style>
+</head>
+<body>
+	<ul id="demo1" class="clearfix">
+	   <li><img alt="img1" src="./css.jpg"></li>
+	   <li><img alt="img2" src="./css.jpg"></li>
+	   <li><img alt="img3" src="./css.jpg"></li>
+	</ul>
+</body>
+</html>

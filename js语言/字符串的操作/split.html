@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- 基于指定的分隔符将一个字符串分割成多个子字符串，并将结果放在一个数组 -->
+	<script>
+	    // split(字符串与正则， 数组的大小)
+		var colorText = "red,blue,green,yellow";
+		var colors1 = colorText.split(","); //["red", "blue", "green", "yellow"]
+		var colors2 = colorText.split(",", 2); //["red", "blue"]
+		var colors3 = colorText.split(/[^\,]+/); //["", ",", ",", ",", ""]
+
+		console.log(colors1);
+		console.log(colors2);
+		console.log(colors3);
+	</script>
+</body>
+</html>
