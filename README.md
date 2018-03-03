@@ -1,2 +1,2 @@
 # learningResource
-平时练习敲过的代码
+平时的小实践及基础积累
