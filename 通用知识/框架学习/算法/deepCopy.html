@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+   function deepCopy(p,c) {
+　　　　var c = c || {};
+　　　　for (var i in p) {
+　　　　　　if (typeof p[i] === 'object') {
+                if (p[i] === null) {
+                    c[i] = null;                        
+                } else {
+　　　　　　　　　  c[i] = (p[i].constructor === Array) ? [] : {};
+　　　　　　　　    deepCopy(p[i], c[i]);
+                }
+　　　　　　} else {
+　　　　　　　　   c[i] = p[i];
+　　　　　　}
+　　　　}
+　　　　return c;
+　　}
+
+var o = {
+    NaN: NaN,
+    o: 0,
+    nego: -0,
+    un: undefined,
+    Infinity: Infinity,
+    Null: null,
+    a:{
+        xx:1,
+        yy:1
+    },  
+    fn: function(name,fn){
+        this.name = name;
+        this.fn = function(){
+            alert('hello');
+        }
+    }
+}
+        
+var o1 = deepCopy(o);
+o1.a.xx = 2
+console.log(o.a.xx)
+
+</script>
+</html>
