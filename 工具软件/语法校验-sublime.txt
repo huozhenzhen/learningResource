@@ -1,3 +1,5 @@
 sublime : sublimelinter
 	sublime jshint
 npm: install -g jshint 	
+
+让sublime支持语法校验
