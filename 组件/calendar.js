@@ -917,7 +917,7 @@
 
     /**
      * 创建元素
-     * @param  {[type]} tagname [标签名字]
+     * @param  {[type]} tagname [标签名字]=
      * @param  {[type]} attr    [属性(多个)]
      * @param  {[type]} html    [内容]
      */

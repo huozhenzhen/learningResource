@@ -37,8 +37,6 @@ ECMAScript 5中简单的数据类型（也称基本数据类型） Underfined, N
 
 	for in 语句         当出现null或者underfined时会出现错误 //ECMAscript5更正了这个行为
 
-	"标记清楚"是目前主流的垃圾收集算法，这种算法的思想是给不常用的值加上标记。然后在回收其内存。
-
 
 
 
