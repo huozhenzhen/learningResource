@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			svg {
+				height: 100%;
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<svg>
+			<rect x="100" y="100" width="100" height="100" fill="red">
+				<animate
+					id="goRight"
+					attributeType="XML"
+					attributeName="x"
+					begin="0;goLeft.end + 2s"
+					from="100"
+					to="800"
+					dur="2s"
+					fill="freeze"
+				></animate>
+				<animate
+					id="goLeft"
+					attributeType="XML"
+					attributeName="x"
+					begin="goRight.end + 2s"
+					from="800"
+					to="100"
+					dur="2s"
+					fill="freeze"
+				></animate>
+			</rect>
+		</svg>
+		<svg viewBox="-200 -200 400 400">
+			<rect x="0" y="0" width="200" height="30" fill="red">
+				<animateTransform
+					attributeType="XML"
+					attributeName="transform"
+					type="rotate"
+					from="0"
+					to="360"
+					dur="3s"
+				></animateTransform>
+			</rect>
+		</svg>
+	</body>
+</html>

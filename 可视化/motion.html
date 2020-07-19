@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            svg, html, body {
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+	</head>
+	<body>
+		<svg viewBox="-400 -400 800 800">
+			<rect
+				x="-25"
+				y="-25"
+				width="50"
+				height="50"
+				fill="rgba(0, 255, 255, .6)"
+			>
+				<animateMotion
+                    dur="3s"
+                    rotate="auto"
+                >
+                    <mpath xlink:href="#motionPath"></mpath>   
+                </animateMotion>
+            </rect>
+            <path
+                id = "motionPath"
+                d = "M 0 0L 100 100A 200 200 0 1 0 0 0"
+                stroke='gray'
+                fill = 'none'
+            ></path>  
+		</svg>
+	</body>
+</html>
