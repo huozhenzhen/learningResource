@@ -1,6 +1,7 @@
 const evn = process.env.NODE_ENV
 
 let MYSQL_CONF
+let REDIS_CONF
 
 if (evn === 'dev') {
     MYSQL_CONF = {
@@ -9,6 +10,10 @@ if (evn === 'dev') {
         user: 'root',
         password: '291378',
         database: 'myblog'
+    }
+    REDIS_CONF = {
+        host: '127.0.0.1',
+        port: 6379
     }
 }
 if (evn === 'production') {
@@ -20,9 +25,14 @@ if (evn === 'production') {
         password: '291378',
         database: 'myblog'
     }
+    REDIS_CONF = {
+        host: '127.0.0.1',
+        port: 6379
+    }
 
 }
 
 module.exports = {
-    MYSQL_CONF
+    MYSQL_CONF,
+    REDIS_CONF
 };

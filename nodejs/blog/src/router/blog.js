@@ -1,6 +1,12 @@
 const { getList, getDetail, newBlog, updateBlog, deleteBlog } = require("../controller/blog");
 const { SuccessModel, ErrorModel } = require("../model/resModel")
 
+const loginCheck = (req) => {
+    if(!req.session.username) {
+        return Promise.resolve(new ErrorModel("尚未登录"))
+    }
+}
+
 const handleBlogRouter = (req, res) => {
     const method = req.method;
     const id = req.query.id
@@ -23,8 +29,11 @@ const handleBlogRouter = (req, res) => {
     }
     //新建一篇blog
     if (method === "POST" && req.path === "/api/blog/new") {
-        const author = "zhenzhen";
-        req.body.author = author;
+        const loginCheckResult = loginCheck()
+        if(loginCheckResult) {
+            return loginCheckResult
+        }
+        req.body.author = req.session.username;
         const result = newBlog(req.body);
         return result.then(data => {
             return new SuccessModel(data, '新建一篇成功')
@@ -33,10 +42,12 @@ const handleBlogRouter = (req, res) => {
     }
     //更新blog列表
     if (method === "POST" && req.path === "/api/blog/update") {
-        const author = "zhenzhen";
-        req.body.author = author;
+        const loginCheckResult = loginCheck()
+        if(loginCheckResult) {
+            return loginCheckResult
+        }
+        req.body.author = req.session.username;
         const result = updateBlog(id, req.body);
-        
         return result.then(isSuc => {
             if (isSuc) {
                 return new SuccessModel(null, '更新blog列表成功')
@@ -49,8 +60,11 @@ const handleBlogRouter = (req, res) => {
     }
     //删除blog列表
     if (method === "POST" && req.path === "/api/blog/delete") {
-        const author = "zhenzhen";
-        req.body.author = author;
+        const loginCheckResult = loginCheck()
+        if(loginCheckResult) {
+            return loginCheckResult
+        }   
+        req.body.author = req.session.username;
         const result = deleteBlog(id, req.body.author);
         return result.then(isSuc => {
             if (isSuc) {
