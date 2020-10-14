@@ -15,9 +15,9 @@ const getPostData = (req) => {
         if (req.method !== "POST") {
             return resolve({})
         }
-        if (req.headers['content-type'] !== 'application/json') {
-            return resolve({})
-        }
+        // if (req.headers['content-type'] !== 'application/json') {
+        //     return resolve({})
+        // }
         let postData = ''
         req.on('data', chunk => {
             postData += chunk.toString()
@@ -30,7 +30,6 @@ const getPostData = (req) => {
         })
     })
 }
-
 const serverHandler = (req, res) => {
     res.setHeader('Content-type', 'application/json')
     const url = req.url
@@ -77,7 +76,6 @@ const serverHandler = (req, res) => {
         } else {
             req.session = sessionData
         }
-        console.log('req.session', req.session);
         return getPostData(req)
     }).then(postData => {
         req.body = postData
@@ -89,7 +87,6 @@ const serverHandler = (req, res) => {
                     res.setHeader('Set-Cookie', `userId=${userId}; path=/; httpOnly; expires=${getCookieExpires()}`)
                 }
                 res.end(JSON.stringify(blogData))
-
             })
             return
         }
