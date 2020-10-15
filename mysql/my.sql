@@ -6,8 +6,8 @@ use myblog;
 
 show tables;
 
-insert into users(username, `password`, realname) values('kaina','0401', 'ckn');
-insert into users(username, `password`, realname) values('zhenzhen','0906', 'hzz');
+insert into users(username, `password`, realname, avatar, introduction, roles) values('kaina','0401', 'ckn', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', 'I am a super administrator', "['admin']");
+insert into users(username, `password`, realname, avatar, introduction, roles) values('zhenzhen','0906', 'hzz' , 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif','I am a super editor',"['editor']");
 
 insert into blogs(title, content,  createtime, author) values('标题1','内容1', '1601178804924','zhenzhen');
 insert into blogs(title, content,  createtime, author) values('标题2','内容2', '1601178804924','kaina');

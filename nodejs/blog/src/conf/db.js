@@ -8,7 +8,7 @@ if (evn === 'dev') {
         host: 'localhost',
         port: 3306,
         user: 'root',
-        password: '291378',
+        password: '123456',
         database: 'myblog'
     }
     REDIS_CONF = {
@@ -22,7 +22,7 @@ if (evn === 'production') {
         host: 'localhost',
         port: 3306,
         user: 'root',
-        password: '291378',
+        password: '123456',
         database: 'myblog'
     }
     REDIS_CONF = {

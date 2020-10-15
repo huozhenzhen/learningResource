@@ -6,7 +6,6 @@ const loginCheck = (req) => {
         return Promise.resolve(new ErrorModel("尚未登录"))
     }
 }
-
 const handleBlogRouter = (req, res) => {
     const method = req.method;
     const id = req.query.id
@@ -38,7 +37,6 @@ const handleBlogRouter = (req, res) => {
         return result.then(data => {
             return new SuccessModel(data, '新建一篇成功')
         })
-
     }
     //更新blog列表
     if (method === "POST" && req.path === "/api/blog/update") {
@@ -56,7 +54,6 @@ const handleBlogRouter = (req, res) => {
             }
 
         })
-
     }
     //删除blog列表
     if (method === "POST" && req.path === "/api/blog/delete") {
@@ -75,7 +72,6 @@ const handleBlogRouter = (req, res) => {
             }
 
         })
-
     }
 }
 
