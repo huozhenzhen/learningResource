@@ -16,5 +16,8 @@ function exec(sql) {
     })
 }
 
-module.exports = { exec }
+module.exports = {
+ exec,
+ escape: mysql.escape 
+}
 

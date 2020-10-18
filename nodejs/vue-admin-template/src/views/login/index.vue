@@ -59,7 +59,7 @@ export default {
                 username: [{
                     required: true,
                     trigger: 'blur',
-                    validator: validateUsername
+                    // validator: validateUsername
                 }],
                 password: [{
                     required: true,
