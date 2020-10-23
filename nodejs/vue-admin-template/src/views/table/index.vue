@@ -40,9 +40,7 @@
             <el-form-item label="title" :label-width="formLabelWidth">
                 <el-input v-model="form.title" autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item label="author" :label-width="formLabelWidth">
-                <el-input v-model="form.author" autocomplete="off"></el-input>
-            </el-form-item>
+          
             <el-form-item label="content" :label-width="formLabelWidth">
                 <el-input type="textarea" v-model="form.content" autocomplete="off"></el-input>
             </el-form-item>

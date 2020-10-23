@@ -12,6 +12,7 @@ function writeLog(writeStream, log) {
     writeStream.write(log + "\n")
 }
 
+
 const accessWriteStream = createWriteStream('access.log');
 function accessLog(log) {
     writeLog(accessWriteStream, log)

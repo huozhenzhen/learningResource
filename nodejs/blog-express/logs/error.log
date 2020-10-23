@@ -1,0 +1,14 @@
+2020-10-22 17:09:12: Thu, 22 Oct 2020 09:09:12 GMT express-session deprecated undefined resave option; provide resave option at app.js:45:9
+2020-10-22 17:09:12: Thu, 22 Oct 2020 09:09:12 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at app.js:45:9
+2020-10-22 17:10:24: Thu, 22 Oct 2020 09:10:24 GMT express-session deprecated undefined resave option; provide resave option at app.js:45:9
+2020-10-22 17:10:24: Thu, 22 Oct 2020 09:10:24 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at app.js:45:9
+2020-10-22 17:10:27: Thu, 22 Oct 2020 09:10:27 GMT express-session deprecated undefined resave option; provide resave option at app.js:45:9
+2020-10-22 17:10:27: Thu, 22 Oct 2020 09:10:27 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at app.js:45:9
+2020-10-22 17:10:50: Thu, 22 Oct 2020 09:10:50 GMT express-session deprecated undefined resave option; provide resave option at app.js:45:9
+2020-10-22 17:10:50: Thu, 22 Oct 2020 09:10:50 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at app.js:45:9
+2020-10-22 17:11:41: Thu, 22 Oct 2020 09:11:41 GMT express-session deprecated undefined resave option; provide resave option at app.js:45:9
+2020-10-22 17:11:41: Thu, 22 Oct 2020 09:11:41 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at app.js:45:9
+2020-10-22 17:12:32: Thu, 22 Oct 2020 09:12:32 GMT express-session deprecated undefined resave option; provide resave option at app.js:45:9
+2020-10-22 17:12:32: Thu, 22 Oct 2020 09:12:32 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at app.js:45:9
+2020-10-22 17:13:45: Thu, 22 Oct 2020 09:13:45 GMT express-session deprecated undefined resave option; provide resave option at app.js:45:9
+2020-10-22 17:13:45: Thu, 22 Oct 2020 09:13:45 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at app.js:45:9

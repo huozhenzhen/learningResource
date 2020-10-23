@@ -1,6 +1,7 @@
 'use strict'
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -36,7 +37,7 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    proxy:'http://127.0.0.1:3000'
+    proxy: 'http://127.0.0.1:3000'
     // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
@@ -88,11 +89,24 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()
-            
+          config.plugin('compressionPlugin').use(new CompressionWebpackPlugin({
+            // filename: '[path][base].gz[query]',
+            filename: '[path][base].gz',
+            algorithm: 'gzip',
+            test: new RegExp(
+              '\\.(' +
+              ['js', 'css'].join('|') +
+              ')$',
+            ),
+            threshold: 10240,
+            minRatio: 0.8,
+            deleteOriginalAssets:false
+          })).end()
+
           config
             .optimization.splitChunks({
               chunks: 'all',

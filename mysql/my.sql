@@ -14,7 +14,7 @@ insert into blogs(title, content,  createtime, author) values('标题2','内容2
 insert into blogs(title, content,  createtime, author) values('标题3','内容3', '1601178804924','zhenzhen');
 
 select * from  users;
-
+select username, realname, avatar, introduction, roles from users where username='zhenzhen' and password='0906';
 select id from  users;
 SET SQL_SAFE_UPDATES=0;
 update users set realname='ckn' where realname='kaina1';
