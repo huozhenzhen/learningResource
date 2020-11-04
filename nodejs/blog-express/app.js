@@ -1,12 +1,13 @@
 var createError = require('http-errors');
 var express = require('express');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+
 const session = require('express-session')
 const RedisStore = require('connect-redis')(session)
 const redisClient = require('./db/redis')
 const path = require('path')
 const fs = require('fs');
+const logger = require('morgan');
 // var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var blogRouter = require('./routes/blog');

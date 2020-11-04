@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 返回函数在别的地方执行
+    // const a = "out"
+    // function test() {
+    //     const a = "inner"
+    //     return function() {
+    //         console.log(a)
+    //     }
+      
+    // }
+    // let fn = test()
+    // fn()
+
+
+          // 传入函数在别的地方执行
+    function out(fn){
+        const a = "out";
+        fn()
+    }
+    function inner() {
+        const a = 'inner'
+        console.log(a );
+    }
+    out(inner)
+
+
+    //总结：闭包自由变量的查找  在定义的地方  延作用域往上查找。 
+</script>
+</html>

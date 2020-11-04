@@ -22,7 +22,7 @@ export function saveBlog(data) {
     data
   })
 }
-export function updateBlog(data, params) {
+export function updateBlog(params,data ) {
   return request({
     url: '/blog/update',
     method: 'post',

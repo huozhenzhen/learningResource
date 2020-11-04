@@ -40,7 +40,7 @@
             <el-form-item label="title" :label-width="formLabelWidth">
                 <el-input v-model="form.title" autocomplete="off"></el-input>
             </el-form-item>
-          
+
             <el-form-item label="content" :label-width="formLabelWidth">
                 <el-input type="textarea" v-model="form.content" autocomplete="off"></el-input>
             </el-form-item>
@@ -59,7 +59,7 @@ import {
     saveBlog,
     deleteBlog,
     updateBlog,
-    getBlogDetail
+    getBlogDetail,
 } from "@/api/table";
 
 export default {
@@ -68,10 +68,11 @@ export default {
             list: null,
             listLoading: true,
             dialogFormVisible: false,
+            type: "",
+            id: "",
             form: {
                 title: "",
                 content: "",
-                author: "",
             },
             formLabelWidth: "120px",
         };
@@ -88,38 +89,57 @@ export default {
             });
         },
         handleCreate() {
+            this.type = "add";
             this.dialogFormVisible = true;
         },
         handleOk() {
-            saveBlog(this.form).then((res) => {
-                this.dialogFormVisible = false;
-                this.$notify({
-                    title: "成功",
-                    message: res.message,
-                    type: "success",
+            if (this.type == "add") {
+                saveBlog(this.form).then((res) => {
+                    this.dialogFormVisible = false;
+                    this.$notify({
+                        title: "成功",
+                        message: res.message,
+                        type: "success",
+                    });
+                    (this.form = {
+                        title: "",
+                        content: "",
+                    }),
+                    this.fetchData();
                 });
-                (this.form = {
-                    title: "",
-                    content: "",
-                    author: "",
-                }),
-                this.fetchData();
-            });
+            } else {
+                updateBlog({
+                        id: this.id,
+                    },
+                    this.form
+                ).then((res) => {
+                    this.dialogFormVisible = false;
+                    this.$notify({
+                        title: "修改成功",
+                        message: res.message,
+                        type: "success",
+                    });
+                    (this.form = {
+                        title: "",
+                        content: "",
+                    }),
+                    this.fetchData();
+                });
+            }
         },
         handleUpdate(row) {
-            const id = row.id;
+            this.id = row.id;
+            this.type = "edit";
             getBlogDetail({
-                id
-            }).then(res => {
+                id: this.id,
+            }).then((res) => {
                 this.dialogFormVisible = true;
-                const data = res.data
+                const data = res.data;
                 this.form = {
                     title: data.title,
                     content: data.content,
-                    author: data.author
-                }
-            })
-
+                };
+            });
         },
         handleDelete(row) {
             const id = row.id;
