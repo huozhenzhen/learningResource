@@ -1,4 +1,4 @@
-const { HttpException } = require('../core/httpException')
+const { HttpException } = require('@root/core/httpException')
 
 const catchError = async (ctx, next) => {
     try {
@@ -11,7 +11,7 @@ const catchError = async (ctx, next) => {
                 request: `${ctx.method} ${ctx.path}`
             }
             ctx.status = error.status
-        }else{-
+        }else{
             console.log(error)
             ctx.body = {
                 msg: '服务器内部异常o(*￣▽￣*)o',

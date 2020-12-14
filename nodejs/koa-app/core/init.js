@@ -1,6 +1,6 @@
 const requireDirectory = require('require-directory')
 const Router = require('koa-router')
-const errors = require('./httpException')
+const infos = require('./httpException')
 
 class InitManager {
     static init(app) {
@@ -24,7 +24,7 @@ class InitManager {
         global.config = CONFIG
     }
     static InitLoadError() {
-        global.errors = errors
+        global.infos = infos
     }
 }
 

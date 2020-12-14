@@ -1,4 +1,22 @@
-const { LinValidator, Rule } = require('../../core/lin-validator')
+const {
+    LinValidator,
+    Rule
+} = require('@root/core/lin-validator-v2')
+const {
+    User
+} = require('@models/user')
+const {
+    LoginType
+} = require('@lib/enum')
+
+function checkType(vals) {
+    if (!vals.body.type) {
+        throw new Error('type是必须的')
+    }
+    if (!LoginType.isThisType(vals.body.type)) {
+        throw new Error('type参数不合法')
+    }
+}
 
 class PositiveInterValidator extends LinValidator {
     constructor() {
@@ -9,4 +27,85 @@ class PositiveInterValidator extends LinValidator {
     }
 }
 
-module.exports = {PositiveInterValidator};
+class LikeValidator extends PositiveInterValidator {
+    constructor() {
+        super()
+        this.type = checkType
+    }
+
+}
+
+class NotEmptyValidator extends LinValidator {
+    constructor() {
+        super()
+        this.token = [
+            new Rule('isLength', '不能为空', {
+                min: 1
+            })
+
+        ]
+    }
+
+}
+
+class TokenValidator extends LinValidator {
+    constructor() {
+        super()
+        this.account = [new Rule('isLength', '不符合账号规则', {
+            min: 4,
+            max: 32
+        })]
+        this.secret = [
+                new Rule('isOptional'),
+                new Rule('isLength', '6-128字符', {
+                    min: 6,
+                    max: 128
+                })
+            ],
+        this.type = checkType
+    }
+}
+
+class RegisterValidator extends LinValidator {
+    constructor() {
+        super()
+        this.email = [new Rule('isEmail', '邮箱错误')]
+        this.password = [new Rule('isLength', '6-32字符', {
+            min: 6,
+            max: 32
+        })]
+        this.passwordCopy = this.password
+        this.nickName = [new Rule('isLength', '6-32字符', {
+            min: 4,
+            max: 32
+        })]
+    }
+    validatePassword(vals) {
+        const {
+            password,
+            passwordCopy
+        } = vals.body
+        if (passwordCopy !== password) {
+            throw new Error('密码不一致')
+        }
+    }
+    async validateEmail(vals) {
+        const email = vals.body.email
+        const user = await User.findOne({
+            where: {
+                email
+            }
+        })
+        if (user) {
+            throw new Error('邮箱已经存在')
+        }
+    }
+}
+
+module.exports = {
+    PositiveInterValidator,
+    RegisterValidator,
+    LikeValidator,
+    TokenValidator,
+    NotEmptyValidator
+};
