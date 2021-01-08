@@ -6,17 +6,10 @@ const {
     User
 } = require('@models/user')
 const {
+    ArtType,
     LoginType
 } = require('@lib/enum')
 
-function checkType(vals) {
-    if (!vals.body.type) {
-        throw new Error('type是必须的')
-    }
-    if (!LoginType.isThisType(vals.body.type)) {
-        throw new Error('type参数不合法')
-    }
-}
 
 class PositiveInterValidator extends LinValidator {
     constructor() {
@@ -30,9 +23,29 @@ class PositiveInterValidator extends LinValidator {
 class LikeValidator extends PositiveInterValidator {
     constructor() {
         super()
-        this.type = checkType
+        this.validateType = function (vals) {
+            if (!vals.body.type) {
+                throw new Error('type是必须的')
+            }
+            if (!ArtType.isThisType(vals.body.type)) {
+                throw new Error('type参数不合法')
+            }
+        }
     }
+}
 
+class ClassicValidator extends PositiveInterValidator {
+    constructor() {
+        super()
+        this.validateType = function (vals) {
+            if (!vals.path.type) {
+                throw new Error('type是必须的')
+            }
+            if (!ArtType.isThisType(vals.path.type)) {
+                throw new Error('type参数不合法')
+            }
+        }
+    }
 }
 
 class NotEmptyValidator extends LinValidator {
@@ -62,7 +75,14 @@ class TokenValidator extends LinValidator {
                     max: 128
                 })
             ],
-        this.type = checkType
+            this.type = function (vals) {
+                if (!vals.body.type) {
+                    throw new Error('type是必须的')
+                }
+                if (!LoginType.isThisType(vals.body.type)) {
+                    throw new Error('type参数不合法')
+                }
+            }
     }
 }
 
@@ -102,10 +122,49 @@ class RegisterValidator extends LinValidator {
     }
 }
 
+class BookSearchValidator extends LinValidator {
+    constructor() {
+        super()
+        this.q = new Rule('isLength', '搜索关键词不能为空', {
+            min: 1,
+            max: 16
+        })
+        this.start = [
+            new Rule('isInt', '不符合规范', {
+                min: 0,
+                max: 100000
+            }),
+            new Rule('isOptional', '', 0)
+        ]
+        this.count = [
+            new Rule('isInt', '不符合规范', {
+                min: 1,
+                max: 20
+            }),
+            new Rule('isOptional', '', 20)
+        ]
+    }
+}
+
+class addShortCommentValidator extends PositiveInterValidator {
+    constructor() {
+        super()
+        this.content = [
+            new Rule('isLength', '1-24之间', {
+                min: 1,
+                max: 12
+            })
+        ]
+    }
+}
+
 module.exports = {
     PositiveInterValidator,
     RegisterValidator,
     LikeValidator,
+    ClassicValidator,
     TokenValidator,
-    NotEmptyValidator
+    NotEmptyValidator,
+    BookSearchValidator,
+    addShortCommentValidator
 };

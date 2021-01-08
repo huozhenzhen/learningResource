@@ -17,11 +17,12 @@ class NotFoundError extends HttpException {
 }
 
 class Success extends HttpException {
-    constructor(data = null, msg = 'ok') {
+    constructor(data = null, msg = 'ok', code = 0) {
         super()
         this.status = 200
         this.msg = msg
-        this.data = data
+        this.data = data,
+        this.code = code
     }
 }
 
