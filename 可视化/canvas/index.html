@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="drawing" width="200" height="200"></canvas>
+    <canvas id="alarm" width="200" height="200"></canvas>
+</body>
+<script>
+    let drawing = document.getElementById('drawing')
+    if (drawing.getContext) {
+        let context = drawing.getContext('2d')
+        context.strokeStyle = 'red';
+        context.fillStyle = "#f00"
+        context.strokeRect(10, 10, 50, 50);
+
+        context.fillStyle = "rgba(0,0,255, 0.5)"
+        context.fillRect(30, 30, 50, 50);
+
+        context.clearRect(40, 40, 10, 10)
+    }
+</script>
+<script>
+    let alarm = document.getElementById('alarm')
+    if (alarm.getContext) {
+        let ctx = alarm.getContext('2d')
+        ctx.beginPath()
+        ctx.arc(100, 100, 99, 0, 2 * Math.PI, false)
+        ctx.moveTo(194, 100)
+        ctx.arc(100, 100, 94, 0, 2 * Math.PI, false)
+        // ctx.moveTo(100, 100)
+        // ctx.lineTo(100, 15)
+        // ctx.moveTo(100, 100)
+        // ctx.lineTo(40, 100)
+
+        ctx.translate(100, 100)
+        ctx.rotate(1)
+        ctx.moveTo(0,0)
+        ctx.lineTo(0, -85)
+        ctx.moveTo(0,0)
+        ctx.lineTo(-65, 0)
+        ctx.stroke()
+
+        ctx.fillStyle = "#f00"
+
+        // ctx.font = "bold 19px Arial"
+        // ctx.textAlign = "center"
+        // ctx.textBaseline = "middle"
+        // ctx.fillText('12', 100, 20)
+        
+
+
+    }
+</script>
+
+</html>

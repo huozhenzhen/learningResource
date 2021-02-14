@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <iframe name="my-edit" frameborder="0" width="200px" height="200px" style="background-color: azure;"></iframe>
+</body>
+<script>
+    window.addEventListener('load', function(){
+        frames['my-edit'].document.designMode = "on"
+    })
+</script>
+</html>

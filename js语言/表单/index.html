@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="myForm">
+        <ul>
+            <li>
+                <input type="text" name="a1" value="a">
+                a
+            </li>
+            <li>
+                <input type="text" autofocus name="a1" value="a">
+                b
+            </li>
+            <li>
+                <input type="radio" name="c1" value="c">
+                c
+            </li>
+        </ul>
+    </form>
+</body>
+<script>
+    let form = document.getElementById('myForm')
+    let ele = form.elements[0]
+    ele.addEventListener("change", function (evt) {
+        console.log('change', evt.target)
+    })
+
+    ele.addEventListener("blur", function (evt) {
+        console.log('blur', evt.target)
+    })
+</script>
+
+</html>

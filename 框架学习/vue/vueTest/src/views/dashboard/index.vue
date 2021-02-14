@@ -1,20 +1,31 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">name: {{ name }}</div>
+    <div class="dashboard-text" @click="handleClick">name: {{ name }}</div>
+    <my-child :test="testPP"></my-child>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
+import myChild from "./child";
 
 export default {
-  name: 'Dashboard',
+  name: "Dashboard",
+  data() {
+    return {
+      testPP: "11111111111",
+    };
+  },
+  components: { myChild },
   computed: {
-    ...mapGetters([
-      'name'
-    ])
-  }
-}
+    ...mapGetters(["name"]),
+  },
+  methods: {
+    handleClick(){
+      this.testPP = '222222222222'
+    }
+  },
+};
 </script>
 
 <style lang="scss" scoped>

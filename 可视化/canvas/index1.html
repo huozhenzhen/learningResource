@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--创建一个边长为200的正方形画布-->
+    <canvas id="mc" width="200" height="200" style="border:1px solid black"></canvas>
+
+    <script type="text/javascript">
+        var canvas = document.getElementById('mc'); //获取Canvas元素对应的DOM对象
+        var ctx = canvas.getContext('2d');//获取Canvas上的绘图的CanvasRenderingContext2D对象
+        ctx.lineWidth = 3; //设置笔触线条的宽度
+        ctx.translate(100, 100); //将原点左边设置到画布的中间
+        ctx.save(); //保存当前画布的状态，该状态包含了lineWidth=3,translate(100,100),然后其他那些属性为默认值.
+        ctx.strokeStyle = 'red'; //设置线条颜色为红色
+        //坐标系统旋转90°
+        ctx.rotate(Math.PI / 2);
+        //画第一条直线
+        ctx.beginPath();
+        ctx.moveTo(-100, 0);
+        ctx.lineTo(100, 0);
+        ctx.closePath();
+        ctx.stroke();
+        //恢复之前保存的绘图状态
+        ctx.restore();
+        //再画第二条直线
+        ctx.beginPath();
+        ctx.moveTo(-100, 0);
+        ctx.lineTo(100, 0);
+        ctx.closePath();
+        ctx.stroke();
+    </script>
+</body>
+
+</html>
