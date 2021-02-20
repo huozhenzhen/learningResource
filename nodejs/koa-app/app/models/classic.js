@@ -7,7 +7,12 @@ const {
 } = require('@root/core/db')
 
 const classicFields = {
-    image: Sequelize.STRING,
+    image: {
+        type: Sequelize.STRING,
+        get(){
+            return global.config.host + this.getDataValue('image')
+        }
+    },
     content: Sequelize.STRING,
     pubdate: Sequelize.DATEONLY,
     favNums:{
@@ -40,18 +45,17 @@ Music.init({
     tableName: 'music'
 })
 
-class Book extends Model {}
-Book.init({
-    ...classicFields,
-    url: Sequelize.STRING
-}, {
-    sequelize:db, 
-    tableName: 'book'
-})
+// class Book extends Model {}
+// Book.init({
+//     ...classicFields,
+//     url: Sequelize.STRING
+// }, {
+//     sequelize:db, 
+//     tableName: 'book'
+// })
 
 module.exports = {
     Movie,
     Sentence,
     Music,
-    Book
 }

@@ -32,8 +32,8 @@ router.get('/hotBookList', new Auth().m, async (ctx, next) => {
 
 router.get('/:id/detail', new Auth().m, async (ctx, next) => {
     const v = await new PositiveInterValidator().validate(ctx)
-    const book = new Book(v.get('path.id'))
-    const detail = await book.detail()
+    const book = new Book()
+    const detail = await book.detail(v.get('path.id'))
     ctx.body = new global.infos.Success(detail)
 });
 

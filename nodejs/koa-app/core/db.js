@@ -33,16 +33,16 @@ const sequelize = new Sequelize(dbName, user, password, {
     }
 })
 
-Model.prototype.toJSON = function () {
-    let data = clone(this.dataValues);
-    unset(data, 'deletedAt')
-    if(Array.isArray(this.exclude)) {
-        this.exclude.forEach(item => {
-            unset(data, item)
-        });
-    }
-    return data
-}
+// Model.prototype.toJSON = function () {
+//     let data = clone(this.dataValues);
+//     unset(data, 'deletedAt')
+//     if(Array.isArray(this.exclude)) {
+//         this.exclude.forEach(item => {
+//             unset(data, item)
+//         });
+//     }
+//     return data   
+// }
 
 sequelize.sync({
     // force: true

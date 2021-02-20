@@ -20,9 +20,11 @@ class Favor extends Model {
                 uid
             }
         })
+       
         if (favor) {
             throw new global.infos.LikeError()
         }
+
         return db.transaction(async t => {
             await Favor.create({
                 artId,
@@ -32,6 +34,7 @@ class Favor extends Model {
                 transaction: t
             })
             const art = await Art.getTypeData(artId, type)
+          
             await art.increment('favNums', {
                 by: 1,
                 transaction: t
