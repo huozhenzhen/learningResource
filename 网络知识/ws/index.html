@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/vue/2.1.3/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <input type="text" @blur="onblur" v-model="inputVal">
+    </div>
+
+    <script type="text/javascript">
+        var heartCheck = {
+
+            start: function () {
+                var self = this;
+                this.timeoutObj && clearTimeout(this.timeoutObj);
+                this.serverTimeoutObj && clearTimeout(this.serverTimeoutObj);
+                this.timeoutObj = setTimeout(function () {
+                    //这里发送一个心跳，后端收到后，返回一个心跳消息，
+                    //onmessage拿到返回的心跳就说明连接正常
+                    websocket.send("HeartBeat");
+                    console.log('ping');
+                    self.serverTimeoutObj = setTimeout(function () { // 如果超过一定时间还没重置，说明后端主动断开了
+                        console.log('关闭服务');
+                        websocket.close();//如果onclose会执行reconnect，我们执行 websocket.close()就行了.如果直接执行 reconnect 会触发onclose导致重连两次
+                    }, self.timeout)
+                }, this.timeout)
+            }
+        };
+
+        var app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    inputVal: "xuxiao is boy",
+                    wsServer: null,
+                    isReconnection: true,
+                    reconnectionAttempts: 3,
+                    reconnectionCount: 0,
+                    lockReconnect: false,
+                    timeoutObj: null,
+                    serverTimeoutObj: null,
+                    reconnectTt: null
+                }
+            },
+            created() {
+                this.connect()
+
+            },
+            methods: {
+                connect() {
+                    try {
+                        this.wsServer = new WebSocket('ws://127.0.0.1:3000');
+                        ['onopen', 'onmessage', 'onerror', 'onclose'].forEach(eventType => {
+                            this.wsServer[eventType] = (e) => {
+                                this.wsServer.send(eventType);
+                                console.log(eventType, e)
+
+                                if (eventType === 'onopen') {
+                                    this.reconnectionCount = 0,
+                                        this.startHeartBeat();
+                                }
+                                if (eventType === 'onmessage') {
+                                    this.reconnectionCount = 0,
+                                        this.startHeartBeat();
+                                }
+
+                                if (eventType === 'onclose') {
+                                    this.reconnect()
+                                }
+                            }
+                        });
+                    } catch (error) {
+                        this.reconnect()
+                    }
+                },
+                reconnect() {
+                    const isOver = this.reconnectionCount >= this.reconnectionAttempts
+                    if (this.lockReconnect || isOver) {
+                        return
+                    }
+                    this.reconnectionCount++
+                    console.log('连接次数', this.reconnectionCount)
+                    lockReconnect = true;
+                    this.reconnectTt && clearTimeout(this.reconnectTt)
+                    this.reconnectTt = setTimeout(() => {
+                        this.connect()
+                        lockReconnect = false;
+                    }, 10000);
+                },
+                startHeartBeat: function () {
+                    var self = this;
+                    this.timeoutObj && clearTimeout(this.timeoutObj);
+                    this.serverTimeoutObj && clearTimeout(this.y
+                    );
+                    this.timeoutObj = setTimeout(function () {
+                        //这里发送一个心跳，后端收到后，返回一个心跳消息，
+                        //onmessage拿到返回的心跳就说明连接正常
+                        self.wsServer.send("HeartBeat");
+                        console.log('ping');
+                        self.serverTimeoutObj = setTimeout(function () { // 如果超过一定时间还没重置，说明后端主动断开了
+                            console.log('关闭服务');
+                            self.wsServer.close();//如果onclose会执行reconnect，我们执行 websocket.close()就行了.如果直接执行 reconnect 会触发onclose导致重连两次
+                        }, 5000)
+                    }, 3000)
+                },
+                onblur() {
+                    this.wsServer.send('inputVal:   ' + this.inputVal)
+                }
+            },
+
+        })
+    </script>
+</body>
+
+</html>
