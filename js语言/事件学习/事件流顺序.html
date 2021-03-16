@@ -18,5 +18,8 @@ n<!DOCTYPE html>
 		document.body.addEventListener("click", function(event){
 			alert(event.eventPhase+"        b"); //3冒泡
 		}, false);
+		oDiv.addEventListener("click", function(event){
+			alert(event.eventPhase+"        d"); //3冒泡
+		}, false);
 	</script>
 </html>

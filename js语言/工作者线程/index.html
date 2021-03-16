@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div style="width:100px;height:100px;background-color:red;">
+    </div>
+
+</body>
+<script>
+    var worker = new Worker('test.js');
+    worker.postMessage(40);
+    worker.onmessage = function (event) {
+        var data = event.data;
+        console.log(data)
+    };
+    worker.onerror = function (event) {
+        console.log(event.fileName, event.lineo, event.message);
+    };
+</script>
+</html>

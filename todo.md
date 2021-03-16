@@ -5,10 +5,10 @@
 
 - vue3一些特性
 - vue和angular和rect区别
-- vue.delete
+- vue源码阅读   （慕课网 专栏）
 
 - 性能优化
 
 
-- 服务端渲染SSR nuxt.js
+
 
