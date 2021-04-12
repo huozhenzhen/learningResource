@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const Event = (function () {
+        eventObj = {}
+
+        return {
+            on(type, handler) {
+                (eventObj[type] || (eventObj[type] = [])).push(handler)
+            },
+            off(type, handler) {
+                if (arguments.length === 0) {
+                    eventObj = {}
+                } else if (arguments.length === 1) {
+                    eventObj[type] = []
+                } else {
+                    let events = eventObj[type]
+                    if (!events) {
+                        return
+                    }
+                    for (let i = events.length; i >= 0; i--) {
+                        if (events[i] === handler) {
+                            events.splice(i, 1)
+                        }
+
+                    }
+
+                }
+            },
+            emit(type) {
+                let events = eventObj[type]
+                let args = Array.prototype.slice.call(arguments, 1)
+                if (!events) {
+                    return
+                }
+                for (let i = 0; i < events.length; i++) {
+                    events[i].apply(null, args)
+                }
+            }
+
+        }
+    })()
+</script>
+
+
+<script>
+
+    function test() { console.log('test') }
+    function test1() { console.log('test1') }
+    function test2(val) { console.log(val) }
+
+    Event.on('test1', test1)
+    Event.on('test', test)
+    Event.on('test2', test2)
+    Event.on('test2', test2)
+</script>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{ name.firstName }}</p>
+        <p>{{ name.test.name }}</p>
+    </div>
+
+    <script>
+
+        function MyVue(options) {
+            this._data = options.data
+            this._el = options.el
+            this.$el = this._templateDOM = document.querySelector(this._el)
+            this._parent = this._templateDOM.parentNode;
+        }
+
+        function compiler(template, data) {
+            let childNodes = template.childNodes;
+            let reg = /\{\{(.+?)\}\}/g;
+            for (let i = 0; i < childNodes.length; i++) {
+                let type = childNodes[i].nodeType;
+                if (type == 1) {
+                    if (childNodes[i].childNodes) {
+                        compiler(childNodes[i], data)
+                    }
+                } else if (type == 3) {
+                    let text = childNodes[i].nodeValue;
+                    text = text.replace(reg, function (_, g, c) {
+                        let key = g.trim()
+                        let value = data[key]
+                        return value
+                    })
+                    childNodes[i].nodeValue = text
+                }
+            }
+        }
+
+        function getValueByPath(obj, path) {
+            let paths = path.split('.')
+            let res = obj
+            while (paths.length > 0) {
+                let targetPath = paths.shift();
+                res = res[targetPath]
+            }
+            return res
+        }
+
+        MyVue.prototype.render = function () {
+            this.compiler()
+        }
+
+        MyVue.prototype.compiler = function () {
+            let realHTMLDOM = this._templateDOM.cloneNode(true)
+            compiler(realHTMLDOM, this._data)
+            this.update(realHTMLDOM)
+        }
+
+        MyVue.prototype.update = function (real) {
+            this._parent.replaceChild(real, document.querySelector('#app'))
+        }
+
+        var app = new MyVue({
+            el: '#app',
+            data: {
+                name: {
+                    firstName: 'zhenzhen',
+                    test: {
+                        name: 'huo'
+                    }
+                }
+            },
+        })
+        app.render()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+        <div data-key="test  ">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+
+
+        function getVNode(node) {
+            let nodeType = node.nodeType;
+            let _vNode = null;
+            if (nodeType === 1) {
+                let nodeName = node.nodeName;
+                let attrs = Array.from(node.attributes)
+                let attrsObj = {};
+                attrs.forEach(item => {
+                    attrsObj[item.nodeName] = item.nodeValue
+                })
+                _vNode = new VNode(nodeName, attrsObj, undefined, 1)
+
+                let childNodes = Array.from(node.childNodes);
+                childNodes.forEach(item => {
+                    _vNode.appendChild(getVNode(item))
+                })
+            } else if (nodeType === 3) {
+                let nodeValue = node.nodeValue
+                _vNode = new VNode(undefined, undefined, nodeValue, 3)
+
+            }
+
+            return _vNode
+        }
+
+
+        function parseNode(vNode) {
+            if (vNode.type === 1) {
+                let attrsObj = vNode.data
+                let node = document.createElement(vNode.tag)
+                Object.keys(attrsObj).forEach(key => {
+                    let attrName = key;
+                    let attrValue = attrsObj[key]
+                    node.setAttribute(attrName, attrValue)
+                })
+                vNode.children.forEach(subVNode => {
+                    node.appendChild(parseNode(subVNode))
+                })
+                return node
+            } else if (vNode.type === 3) {
+                return document.createTextNode(vNode.value)
+            }
+        }
+
+        let vDom = getVNode(document.querySelector('#root'))
+
+        console.log(vDom)
+
+        let dom = parseNode(vDom)
+
+        console.log(dom)
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div data-key="test  ">
+            <div>{{persion.name}}</div>
+            <div title="22">{{persion.age}}</div>
+            <div>{{persion.job}}</div>
+            <div>{{arr}}</div>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+    <script src="./watcher.js"></script>
+    <script src="./Dep.js"></script>
+    <script src="./vnode.js"></script>
+    <script src="./compiler.js"></script>
+    <script src="./JGvue.js"></script>
+    <script src="./initRender.js"></script>
+    <script src="./initData.js"></script>
+    <script>
+        let app = new JGVue({
+            el: '#app',
+            data: {
+                persion: {
+                    age: 24,
+                    name: 'hzz',
+                    job: 'it'
+                },
+                arr: [1, 2, 3],
+                arrObj: [{name: 1}, {name: 2}]
+            }
+        })
+        debugger
+        app.mount()
+    </script>
+</body>
+
+</html>

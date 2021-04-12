@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var test = {
+        firstName: 'zhenzhen',
+        test: {
+            name: {
+                a: {
+                    b:{
+                        b: "111"
+                    }
+                }
+            }
+        }
+    }
+
+    function getValueByPathReduce(obj, path) {
+        let paths = path.split('.')
+        let res = obj
+        // let targetPath 
+        // while (targetPath = paths.shift()) {
+        //     res = res[targetPath] 
+        // }
+        res = paths.reduce((a, b) => {
+            console.log(a, b)
+            return a[b]
+        }, res)
+
+
+        return res
+    }
+
+    var a  = getValueByPathReduce(test, 'test.name.a.b.b')
+    console.log(a)
+</script>
+
+</html>

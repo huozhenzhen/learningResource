@@ -3,4 +3,7 @@ import App from './App.vue'
 
 createApp(App).mount('#app')
 
-console.log(App.config);
+
+console.log(App);
+
+console.log(process.env)

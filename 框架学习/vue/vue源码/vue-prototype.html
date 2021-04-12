@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div data-key="test  ">
+            <div>{{persion.name}}</div>
+            <div title="22">{{persion.age}}</div>
+            <div>{{persion.job}}</div>
+            <div>{{arr}}</div>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        class VNode {
+            constructor(tag, data, value, type) {
+                this.tag = tag && tag.toLowerCase();
+                this.data = data;
+                this.value = value;
+                this.type = type;
+                this.children = []
+            }
+            appendChild(vnode) {
+                this.children.push(vnode)
+            }
+        }
+        // 由Htmldom  =>  vnode    待坑的vnode
+        function getVNode(node) {
+            let nodeType = node.nodeType;
+            let _vNode = null;
+            if (nodeType === 1) {
+                let nodeName = node.nodeName;
+                let attrs = Array.from(node.attributes)
+                let attrsObj = {};
+                attrs.forEach(item => {
+                    attrsObj[item.nodeName] = item.nodeValue
+                })
+                _vNode = new VNode(nodeName, attrsObj, undefined, 1)
+
+                let childNodes = Array.from(node.childNodes);
+                childNodes.forEach(item => {
+                    _vNode.appendChild(getVNode(item))
+                })
+            } else if (nodeType === 3) {
+                let nodeValue = node.nodeValue
+                _vNode = new VNode(undefined, undefined, nodeValue, 3)
+
+            }
+
+            return _vNode
+        }
+        // 模拟AST => VNode
+
+        function getValueByPath(obj, path) {
+            let paths = path.split('.')
+            let res = obj
+            while (paths.length > 0) {
+                let targetPath = paths.shift();
+                res = res[targetPath]
+            }
+            return res
+        }
+
+        function parseNode(vNode) {
+            if (vNode.type === 1) {
+                let attrsObj = vNode.data
+                let node = document.createElement(vNode.tag)
+                Object.keys(attrsObj).forEach(key => {
+                    let attrName = key;
+                    let attrValue = attrsObj[key]
+                    node.setAttribute(attrName, attrValue)
+                })
+                vNode.children.forEach(subVNode => {
+                    node.appendChild(parseNode(subVNode))
+                })
+                return node
+            } else if (vNode.type === 3) {
+                return document.createTextNode(vNode.value)
+            }
+        }
+
+
+        let regTest = /\{\{(.+?)\}\}/g;
+        function combine(vnode, data) {
+            let _type = vnode.type
+            let _data = vnode.data
+            let _value = vnode.value
+            let _tag = vnode.tag
+            let _children = vnode.children
+            let _vnode = null
+            if (_type === 3) {
+                _value = _value.replace(regTest, function (_, g) {
+                    let key = g.trim()
+                    let value = getValueByPath(data, key)
+                    return value
+                })
+                _vnode = new VNode(_tag, _data, _value, _type)
+            } else if (_type === 1) {
+                _vnode = new VNode(_tag, _data, _value, _type)
+                _children.forEach(subItem => {
+                    _vnode.appendChild(combine(subItem, data))
+                });
+            }
+            return _vnode
+        }
+
+
+        function defineReactive(target, key, value, enumerable) {
+            if (myType(value) === 'Object') {
+                reactify(value)
+            }
+
+            Object.defineProperty(target, key, {
+                configurable: false,
+                enumerable: !!enumerable,
+                get() {
+                    console.log("get----------" + key)
+                    return value
+                },
+                set(newVal) {
+                    console.log("set---------" + key + ":" + newVal)
+                    value = newVal
+                    if (myType(value) === 'Object') {
+                        reactify(value)
+                    }
+                    app.mountComponent()
+                }
+            })
+        }
+
+        function myType(val) {
+            return Object.prototype.toString.call(val).slice(8, -1)
+        }
+
+        const ARRAY_METHODS = ['push', 'pop', 'unshift', 'shift', 'slice', 'splice', 'reverse', 'sort']
+        const arrayMethods = Object.create(Array.prototype)
+
+        ARRAY_METHODS.forEach(method => {
+            arrayMethods[method] = function () {
+                console.log('数组变化了')
+                let arr = Array.from(arguments)
+                arr.forEach(item => {
+                    reactify(item)
+                })
+                const result = Array.prototype[method].apply(this, arguments)
+                app.mountComponent()
+
+                return result
+            }
+        })
+
+        function reactify(obj) {
+            let keys = Object.keys(obj)
+            for (let i = 0; i < keys.length; i++) {
+                let key = keys[i]
+                let value = obj[key];
+
+                if (Array.isArray(value)) {
+                    value.__proto__ = arrayMethods
+                    value.forEach(item => {
+                        reactify(item)
+                    })
+
+                } else {
+                    defineReactive(obj, key, value, true)
+                }
+            }
+        }
+
+        function proxy(target, prop, key) {
+            Object.defineProperty(target, key, {
+                configurable: true,
+                enumerable: true,
+                get() {
+                    return target[prop][key]
+                },
+                set(val) {
+                    target[prop][key] = val
+                }
+            })
+        }
+
+        function JGVue(options) {
+            this._data = options.data
+            this._el = document.querySelector(options.el)
+            this._parent = this._el.parentNode;
+            this.initData()
+            this.mount()
+        }
+
+        JGVue.prototype.initData = function (vnode) {
+            reactify(this._data)
+
+            let keys = Object.keys(this._data)
+
+            keys.forEach(key => {
+                proxy(this, '_data', key)
+            })
+
+        }
+
+        JGVue.prototype.mount = function () {
+            this.render = this.createRenderFn()
+            this.mountComponent();
+        }
+
+        JGVue.prototype.mountComponent = function () {
+            let mount = () => {
+                this.update(this.render())
+            }
+            mount.call(this)
+
+        }
+
+        JGVue.prototype.createRenderFn = function () {
+            let ast = getVNode(this._el)
+            return function render() {
+                let data = combine(ast, this._data)
+                return data
+            }
+
+        }
+        //渲染 vue使用的是diff算法 
+        JGVue.prototype.update = function (vnode) {
+            let realDom = parseNode(vnode)
+            this._parent.replaceChild(realDom, document.querySelector('#app'))
+        }
+
+
+        let app = new JGVue({
+            el: '#app',
+            data: {
+                persion: {
+                    age: 24,
+                    name: 'hzz',
+                    job: 'it'
+                },
+                arr: [1, 2, 3]
+            }
+        })
+        app.mount()
+    </script>
+</body>
+
+</html>
